@@ -1,0 +1,31 @@
+{% extends 'index-base.html' %}
+{% block content %}
+<center> <h1>Login</h1><br><br><br>
+  {% if loginfrm.errors%}
+  <div class="alert alert-danger" role="alert">
+          {{loginfrm.errors}}
+        </div>
+        {%endif%}
+    <form action="{% url 'accounts:login' %}" method="POST">
+          
+            {% csrf_token %}
+        
+        <div class="form-group">
+                    <label >Username</label>
+                    {{loginfrm.username}}
+                  </div>
+                  <div class="form-group">
+                        <label >Password</label>
+                        {{loginfrm.password}}
+                      </div>
+                      <!-- for redirecting to create page after login when accessed using /create -->
+              {% if request.GET.next %}  
+              <input type="hidden" name="next" value="{{request.GET.next}}">
+              {% endif %}  
+              <!-- for redirecting to create page after login when accessed using /create -->
+              <!-- this variable NEXT will come with post request in login view -->
+                <button type="submit">Login</button>
+                
+                </form>
+                </center>
+{% endblock %}

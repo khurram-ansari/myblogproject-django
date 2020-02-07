@@ -1,0 +1,28 @@
+{% extends 'index-base.html'%}
+
+{% block content %}
+<h1>{{catname}}</h1>
+    {% for cat_blog in catblog%}
+    <div class="site-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 single-content">
+              
+              <p class="mb-5">
+                <img src="{{cat_blog.img.url}}" alt="Image" class="img-fluid">
+              </p>  
+              <h1 class="mb-4">
+                    <a href="{% url 'blog:singleblog' slug=cat_blog.slug %}">{{cat_blog.title}}</a>
+              </h1>
+              <div class="post-meta d-flex mb-5">
+                
+                <div class="vcard">
+                  <span class="d-block"><a href="#">{{cat_blog.author}}</a> in <a href="#">{{singleblog.category}}</a></span>
+                  <span class="date-read">{{cat_blog.created_at}}
+                </div>
+              </div>
+  
+            <p>{{cat_blog.snippet|safe}}</p>
+  </div></div></div></div>
+{% endfor %}
+{% endblock %}

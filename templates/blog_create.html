@@ -1,0 +1,19 @@
+{% extends 'index-base.html' %}
+{% load static %}
+{% block content %}
+    <center>
+        <h1>ADD BLOG</h1>
+    <form method="POST" action="{% url 'blog:createblog' %}" enctype="multipart/form-data" id="form-create-blog">
+        {% csrf_token %}
+       <label>Title</label><br>{{creationform.title}}<br>
+       <label>Content</label><br>{{creationform.content |safe}} {{creationform.media}}<br>
+        <label>Slug</label><br>{{creationform.slug}}<br>
+        <label>category</label><br>{{creationform.category}}<br>
+        <label>Image</label><br>{{creationform.img}}<br><br>
+
+        <!-- <input type="hidden" name="html_converted_content"> -->
+        <button type="submit">Add</button>
+    </form>
+</center>
+<script src="{% static 'js/slugify.js' %}"></script>
+ {% endblock %}
